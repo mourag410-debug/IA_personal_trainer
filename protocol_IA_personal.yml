@@ -13,11 +13,15 @@ perfil_aluno:
     - hipertrofia
     - emagrecimento
     - manutencao
-  ponto_fraco: grupamento_muscular_ou_musculo_isolado_ou_região_do_musculo
+  ponto_fraco:
+    - hipertrofia: true
+    - manutencao: false
+    - grupamento_muscular_ou_musculo_isolado_ou_regiao_do_musculo
 
 freqencia:
-  4_dias_na_semana: '2-1-2'
-  5_dias_na_semana: '3-1-2'
+  recomendacoes:
+    4_dias_na_semana: '2-1-2'
+    5_dias_na_semana: '3-1-2'
     
 volume:
   observação: 
@@ -25,7 +29,7 @@ volume:
     - 'alunos_sedentarios_respondem_bem_a_qualquer_estimulo'
 
   sedentario: 
-    grupamento_por_semana: '7-9'
+    grupamento_por_semana: '6-10'
 
   iniciante: 
     grupamento_por_semana: '11-13'
@@ -37,13 +41,8 @@ volume:
     grupamento_por_semana: '6-10'
   
 series_validas_por_exercicio:
-  descrição: 'a_soma_da_working_set_e_top_set'
-  diario: '2-3'
-
-repeticoes_por_serie:
-  minimo: 5
-  maximo: 30
-  recomendado_a_todos: '5-15'
+  descrição: 'a_soma_da_working_set_+_top_set_+_back_off_set'
+  diario: '3-4'  
 
 regras_progressao:
 
@@ -75,12 +74,12 @@ descanso:
 
     intermediario:
       series_de_aquecimento: '<1_min'
-      series_de_reconhecimento: '1-3_min'
+      series_de_reconhecimento: '<1_min'
       series_validas_minutos: '3-5'
     
     avancado:
       series_de_aquecimento: '<1_min'
-      series_de_reconhecimento: '1-3'
+      series_de_reconhecimento: '<1_min'
       series_validas_minutos: '3-5'
   
   a_cada_treino:
@@ -111,6 +110,7 @@ estrutura_do_treino:
       2: feeder_sets
       3: working_set
       4: top_set
+      5: back_off_set
   classe: 
     series_de_reconhecimento:
       - warm_up_sets
@@ -118,21 +118,44 @@ estrutura_do_treino:
     series_validas: 
       - working_set
       - top_set
+      - back_off_set
 
   warm_up_sets:
+    Objetivo: 
+      - 'lubrificar_o_grupamento_muscular'
+      - 'usado_somente_no_priemiro_exercicio_do_grupamento_muscular'
     reps: "15-20"
+    sets: '0-2'
     falha: false
     descanso: '<1_min'
 
   feeder_sets:
     objetivo: reconhecimento_de_carga
+    reps: '0-15'
+    sets: '0-5'
     descanso: '<1_min'
 
   working_sets:
+    objetivo: 'chegar_proximo_da_falha_e_comecar_a_romper_as_fibras_musculares'
+    sets: '1-2' 
+    reps: '8-12' 
     rir: "2-3"
 
   top_sets:
-    rir: "0"
+    objetivo: 'chegar_a_falha_e_testar_o_limite_do_corpo'
+    sets: 1
+    reps: '6-10'
+    rir: 0
+  
+  back_off_set:
+    descrição: 
+      - 'reduz_de_10%_a_40%_da_carga_da_top_set'
+      - 'usado_na_ultima_série_do_grupo_muscular_para_completar_o_volume_muscular_semanal'
+      - 'usado_somente_no_ultimo_exercicio_do_grupo_muscular'
+    sets: 1
+    reps: '6-10'
+    rir: 0
+    descanso: <1_min'
 
 feedback:
 
@@ -152,27 +175,45 @@ formato_saida:
 
   obrigatorio:
     - exercicio
-    - warm_up_sets:
-        - reps
-        - descanso
-    - feeders: 
-        - reps
-        - descanso
-        - rir(Repetições_em_reserva)
     - working_sets:
-        - reps
-        - descanso
-        - rir(Repetições_em_reserva)
-      top_set: 
-        - reps
-        - descanso
-        - rir(Repetições_em_reserva)
+      - sets
+      - reps
+      - descanso
+      - rir
+    - top_set: 
+      - sets
+      - reps
+      - rir
+  optativa: 
+    - warm_up_sets:
+      - sets
+      - reps
+      - descanso
+    - feeders_sets: 
+      - sets
+      - reps
+      - descanso
+    - back_off_sets:
+      - sets
+      - reps
+      - rir
 
   separar_por:
     - grupamento
     - dia
 
   nao_permitido:
-    - texto_explicativo_excessivo
-    - exercicios_redundantes
-    - series_validas_por_semanen_menores_que_as_especificadas_para_cada_grupamento
+    - 'texto_explicativo_excessivo'
+    - 'exercicios_redundantes'
+    - 'series_validas_por_semanen_menores_que_as_especificadas_para_cada_grupamento'
+
+check_list_obrigatorio:
+  - series_validas_por_semanen_menores_que_as_especificadas_para_cada_grupamento: false
+  - primeira_serie_de_cada_grupamento_com_ warm_up_sets: true
+  - back_off_set_usado_somente_no_ultimo_exercicio_do_grupo_muscular: true
+  - exercicios_redundantes: false
+
+abreviaturas:
+  reps: 'repeticoes_entre_as_series'
+  rir: 'repeticoes_em_reserva_antes_da_falha'
+  sets: 'series_em_cada_exercicio'
