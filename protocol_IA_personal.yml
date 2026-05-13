@@ -1,0 +1,178 @@
+perfil_aluno:
+  sexo:
+    - masculino
+    - feminino
+
+  experiencia:
+    - sedentario: '<3_meses'
+    - iniciante: '3-12_meses'
+    - intermediario: '1-2_anos'
+    - avancado: '>2_anos'
+
+  objetivo:
+    - hipertrofia
+    - emagrecimento
+    - manutencao
+  ponto_fraco: grupamento_muscular_ou_musculo_isolado_ou_região_do_musculo
+
+freqencia:
+  4_dias_na_semana: '2-1-2'
+  5_dias_na_semana: '3-1-2'
+    
+volume:
+  observação: 
+    - 'execucao_compensa_quantidade_por_isso_Podemos_diminuir_a_quanidade_de_series_em_individuos_mais_experientes_'
+    - 'alunos_sedentarios_respondem_bem_a_qualquer_estimulo'
+
+  sedentario: 
+    grupamento_por_semana: '7-9'
+
+  iniciante: 
+    grupamento_por_semana: '11-13'
+
+  intermediario:
+    grupamento_por_semana: '8-12'
+  
+  avancado:
+    grupamento_por_semana: '6-10'
+  
+series_validas_por_exercicio:
+  descrição: 'a_soma_da_working_set_e_top_set'
+  diario: '2-3'
+
+repeticoes_por_serie:
+  minimo: 5
+  maximo: 30
+  recomendado_a_todos: '5-15'
+
+regras_progressao:
+
+    exercicios_de_carga_baixa:
+      descrição: 'carga_absoluta_baixa<80kg'
+      metodo: double_progression
+      aumentar_carga_quando_chegar_no_limite_de_repeticoes_nas_series_de_trebalho:
+        composto: '2-10%'
+        isolado: '2-5%'
+
+    exerciciso_de_carga_alta:
+      descrição: 'carga_absoluta_alta>80kg'
+      metodo: fixed_rep_progression
+      aumentar_carga_a_cada_dia:
+        composto: "2-10%"
+        isolado: "2-5%"
+
+descanso:
+  entre_as_series:
+    sedentario:
+      series_de_aquecimento: '<1_min'
+      series_de_reconhecimento: '<1_min'
+      series_validas_minutos: '1-3'
+    
+    iniciante:
+      series_de_aquecimento: '<1_min'
+      series_de_reconhecimento: '<1_min'
+      series_validas_minutos: '1-3'
+
+    intermediario:
+      series_de_aquecimento: '<1_min'
+      series_de_reconhecimento: '1-3_min'
+      series_validas_minutos: '3-5'
+    
+    avancado:
+      series_de_aquecimento: '<1_min'
+      series_de_reconhecimento: '1-3'
+      series_validas_minutos: '3-5'
+  
+  a_cada_treino:
+    capacidade_de_recuperacao_dias: '1-3'
+  
+pontos_fracos:
+  estrutura_do_treino_intercalada:
+
+    prioridade:
+      - musculo_menos_desenvolvido
+
+    alternancia:
+      - agrupamento_A
+      - agrupamento_B
+
+    se_nao_houver_progressao_de_carga:
+      ajuste_volume:
+        reduzir: "10%"
+
+    se_houver_progressao_mas_sem_hipertrofia:
+      ajuste_volume:
+        aumentar: "10-20%"
+
+estrutura_do_treino:
+  estrutura_das_series:
+    ordem:
+      1: warm_up_sets
+      2: feeder_sets
+      3: working_set
+      4: top_set
+  classe: 
+    series_de_reconhecimento:
+      - warm_up_sets
+      - feeder_sets
+    series_validas: 
+      - working_set
+      - top_set
+
+  warm_up_sets:
+    reps: "15-20"
+    falha: false
+    descanso: '<1_min'
+
+  feeder_sets:
+    objetivo: reconhecimento_de_carga
+    descanso: '<1_min'
+
+  working_sets:
+    rir: "2-3"
+
+  top_sets:
+    rir: "0"
+
+feedback:
+
+  monitorar:
+    - progressao_de_carga
+    - fadiga
+    - dor
+    - sono
+    - recuperacao
+
+  ajustar_volume_quando:
+    fadiga_alta: "-10%"
+    progressao_estagnada: "-10%"
+    recuperacao_boa: "+10%"
+
+formato_saida:
+
+  obrigatorio:
+    - exercicio
+    - warm_up_sets:
+        - reps
+        - descanso
+    - feeders: 
+        - reps
+        - descanso
+        - rir(Repetições_em_reserva)
+    - working_sets:
+        - reps
+        - descanso
+        - rir(Repetições_em_reserva)
+      top_set: 
+        - reps
+        - descanso
+        - rir(Repetições_em_reserva)
+
+  separar_por:
+    - grupamento
+    - dia
+
+  nao_permitido:
+    - texto_explicativo_excessivo
+    - exercicios_redundantes
+    - series_validas_por_semanen_menores_que_as_especificadas_para_cada_grupamento
